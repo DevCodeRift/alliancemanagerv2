@@ -16,17 +16,26 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Alliance Manager v2</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          A Discord bot and web application for managing Politics and War alliances.
         </p>
       </div>
+      <div className="features">
+        <h2>🚀 Coming Soon</h2>
+        <ul>
+          <li>Discord OAuth Authentication</li>
+          <li>Politics and War Integration</li>
+          <li>Alliance Member Management</li>
+          <li>Real-time Bot Control</li>
+        </ul>
+      </div>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+        Built with React + TypeScript + Vite
       </p>
     </>
   )

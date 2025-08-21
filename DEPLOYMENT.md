@@ -52,11 +52,13 @@ In Vercel dashboard → Settings → Environment Variables, add each variable in
 > 💡 **Important**: Add each variable individually in the Vercel dashboard, don't copy-paste the block format.
 
 ### 3. Build Settings
-Vercel should auto-detect these, but verify:
-- **Framework Preset**: Vite
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist`
-- **Install Command**: `npm install`
+Vercel will auto-detect these settings for Vite:
+- **Framework Preset**: Vite (auto-detected)
+- **Build Command**: `npm run build` (auto-detected)
+- **Output Directory**: `dist` (auto-detected)
+- **Install Command**: `npm install` (auto-detected)
+
+> 💡 **No need to configure**: Vercel automatically detects Vite projects
 
 ### 4. Deploy
 1. Click "Deploy"
