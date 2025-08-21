@@ -12,11 +12,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 2rem;
   background: #0a0a0a;
   position: relative;
   overflow: hidden;
   font-family: 'JetBrains Mono', 'Courier New', monospace;
+  box-sizing: border-box;
 }
 
 .auth-container::before {
@@ -53,7 +54,7 @@
     inset 0 0 30px rgba(0, 255, 0, 0.05);
   color: #00ff00;
   position: relative;
-  margin: 2rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -166,21 +167,20 @@
 .form-group input {
   width: 100%;
   padding: 1rem;
-  background: #000000;
+  background: #1a1a1a;
   border: 2px solid #00aa00;
   border-radius: 0;
   font-size: 1rem;
   transition: all 0.3s ease;
   box-sizing: border-box;
-  color: #00ff00 !important;
+  color: #cccccc !important;
   font-weight: 400;
   font-family: 'JetBrains Mono', 'Courier New', monospace;
   letter-spacing: 1px;
-  text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
 }
 
 .form-group input::placeholder {
-  color: #006600 !important;
+  color: #666666 !important;
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 0.5px;
 }
@@ -191,8 +191,8 @@
   box-shadow: 
     0 0 20px rgba(0, 255, 0, 0.4),
     inset 0 0 10px rgba(0, 255, 0, 0.1);
-  background: #001100;
-  text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+  background: #222222;
+  color: #ffffff !important;
 }
 
 .form-group input:disabled {
@@ -202,9 +202,9 @@
 
 .primary-button {
   width: 100%;
-  background: #003300;
-  color: #00ff00 !important;
-  border: 2px solid #00ff00;
+  background: #1a1a1a;
+  color: #ffffff !important;
+  border: 2px solid #00aa00;
   padding: 1rem 1.5rem;
   border-radius: 0;
   cursor: pointer;
@@ -216,7 +216,6 @@
   font-family: 'JetBrains Mono', 'Courier New', monospace;
   position: relative;
   overflow: hidden;
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
   margin-bottom: 1.5rem;
 }
 
@@ -236,12 +235,12 @@
 }
 
 .primary-button:hover {
-  background: #004400;
+  background: #2a2a2a;
   box-shadow: 
-    0 0 25px rgba(0, 255, 0, 0.5),
+    0 0 25px rgba(0, 255, 0, 0.3),
     inset 0 0 20px rgba(0, 255, 0, 0.1);
-  text-shadow: 0 0 15px rgba(0, 255, 0, 1);
   border-color: #00ff00;
+  color: #00ff00 !important;
 }
 
 .primary-button:active {
@@ -261,7 +260,7 @@
 .secondary-button {
   width: 100%;
   background: transparent;
-  color: #00dd00 !important;
+  color: #cccccc !important;
   border: 2px solid #00aa00;
   padding: 1rem 1.5rem;
   border-radius: 0;
@@ -273,14 +272,12 @@
   text-transform: uppercase;
   font-family: 'JetBrains Mono', 'Courier New', monospace;
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
 }
 
 .secondary-button:hover {
   background: rgba(0, 255, 0, 0.08);
   border-color: #00ff00;
   color: #00ff00 !important;
-  text-shadow: 0 0 12px rgba(0, 255, 0, 0.8);
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
 }
 
