@@ -42,7 +42,7 @@ export const PnWVerification: React.FC<PnWVerificationProps> = ({
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h2>Verify Your Nation</h2>
+        <h2 style={{ color: '#000000' }}>Verify Your Nation</h2>
         <p className="auth-subtitle">
           Connect your Politics and War account to complete setup
         </p>

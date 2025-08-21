@@ -44,7 +44,7 @@ export const Login: React.FC<LoginProps> = ({
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h2>Welcome Back</h2>
+        <h2 style={{ color: '#000000 !important' }}>Welcome Back</h2>
         <p className="auth-subtitle">Sign in to Alliance Manager</p>
 
         {(error || localError) && (

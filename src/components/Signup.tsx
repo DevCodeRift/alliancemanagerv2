@@ -99,7 +99,7 @@ export const Signup: React.FC<SignupProps> = ({
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h2>Create Account</h2>
+        <h2 style={{ color: '#000000' }}>Create Account</h2>
         <p className="auth-subtitle">Join Alliance Manager today</p>
 
         {(error || localError) && (
