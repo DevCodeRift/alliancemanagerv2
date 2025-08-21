@@ -27,15 +27,29 @@
 4. Select framework preset: **Vite**
 
 ### 2. Configure Environment Variables
-In Vercel dashboard → Settings → Environment Variables, add:
+In Vercel dashboard → Settings → Environment Variables, add each variable individually:
 
-```bash
-DATABASE_URL=postgresql://username:password@ep-xxxxx.us-east-1.aws.neon.tech/alliancemanager?sslmode=require
-NEXTAUTH_SECRET=your-random-secret-here
-NEXTAUTH_URL=https://your-app.vercel.app
-DISCORD_CLIENT_ID=your-discord-client-id
-DISCORD_CLIENT_SECRET=your-discord-client-secret
-```
+**Variable Name**: `DATABASE_URL`
+**Value**: `postgresql://username:password@ep-xxxxx.us-east-1.aws.neon.tech/alliancemanager?sslmode=require`
+**Environment**: Production, Preview, Development
+
+**Variable Name**: `NEXTAUTH_SECRET`  
+**Value**: `your-random-secret-here` (generate with: `openssl rand -base64 32`)
+**Environment**: Production, Preview, Development
+
+**Variable Name**: `NEXTAUTH_URL`
+**Value**: `https://your-app.vercel.app`
+**Environment**: Production, Preview
+
+**Variable Name**: `DISCORD_CLIENT_ID`
+**Value**: `your-discord-client-id`
+**Environment**: Production, Preview, Development
+
+**Variable Name**: `DISCORD_CLIENT_SECRET`
+**Value**: `your-discord-client-secret` 
+**Environment**: Production, Preview, Development
+
+> 💡 **Important**: Add each variable individually in the Vercel dashboard, don't copy-paste the block format.
 
 ### 3. Build Settings
 Vercel should auto-detect these, but verify:
