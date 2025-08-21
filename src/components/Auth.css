@@ -18,9 +18,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 0;
+  margin: 0;
   background: linear-gradient(135deg, #4a4a4a 0%, #2c2c2c 50%, #1a1a1a 100%);
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   font-family: 'JetBrains Mono', 'Courier New', monospace;
   box-sizing: border-box;
 }
@@ -57,11 +62,12 @@ body {
     inset 0 0 20px rgba(255, 255, 255, 0.1),
     inset 0 0 40px rgba(0, 0, 0, 0.3);
   position: relative;
-  margin: 0 auto;
+  margin: 2rem auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   font-family: 'JetBrains Mono', 'Courier New', monospace;
+  transform: translateX(0);
 }
 
 /* Metal casing details */
@@ -106,6 +112,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
 /* CRT screen effect */
