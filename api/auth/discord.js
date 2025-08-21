@@ -1,5 +1,4 @@
-const jwt = require('jsonwebtoken');
-
+// Simple Discord OAuth endpoint without external dependencies
 module.exports = function handler(req, res) {
   // Add CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -33,19 +32,11 @@ module.exports = function handler(req, res) {
       : 'http://localhost:5173/auth/discord/callback';
     
     console.log('Redirect URI:', redirectUri);
-    console.log('JWT Secret:', process.env.NEXTAUTH_SECRET ? 'SET' : 'NOT SET');
 
-    // Create a state parameter for security
-    const state = jwt.sign(
-      { 
-        timestamp: Date.now(),
-        redirectUri: redirectUri 
-      },
-      process.env.NEXTAUTH_SECRET || 'fallback-secret',
-      { expiresIn: '10m' }
-    );
+    // Create a simple state parameter (random string for now)
+    const state = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     
-    console.log('JWT state generated successfully');
+    console.log('Simple state generated successfully');
 
     const discordAuthUrl = `https://discord.com/api/oauth2/authorize?` +
       `client_id=${clientId}&` +
@@ -64,9 +55,11 @@ module.exports = function handler(req, res) {
 
   } catch (error) {
     console.error('Error generating Discord OAuth URL:', error);
+    console.error('Error stack:', error.stack);
     return res.status(500).json({ 
       error: 'Failed to generate Discord OAuth URL',
-      details: error.message 
+      details: error.message,
+      stack: error.stack
     });
   }
 };
