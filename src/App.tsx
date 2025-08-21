@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthFlow } from './components/AuthFlow'
 import { Dashboard } from './components/Dashboard'
+import { DiscordCallback } from './components/DiscordCallback'
 import './App.css'
 
 interface User {
@@ -26,11 +28,37 @@ function App() {
     setUser(null)
   }
 
-  if (!user) {
-    return <AuthFlow onAuthComplete={handleAuthComplete} />
+  const handleAuthError = (error: string) => {
+    console.error('Auth error:', error)
+    // Redirect back to login
+    window.location.href = '/'
   }
 
-  return <Dashboard user={user} onLogout={handleLogout} />
+  return (
+    <Router>
+      <Routes>
+        <Route 
+          path="/api/auth/discord/callback" 
+          element={
+            <DiscordCallback 
+              onAuthComplete={handleAuthComplete}
+              onError={handleAuthError}
+            />
+          } 
+        />
+        <Route 
+          path="*" 
+          element={
+            user ? (
+              <Dashboard user={user} onLogout={handleLogout} />
+            ) : (
+              <AuthFlow onAuthComplete={handleAuthComplete} />
+            )
+          } 
+        />
+      </Routes>
+    </Router>
+  )
 }
 
 export default App

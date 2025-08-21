@@ -121,11 +121,20 @@ export const AuthFlow: React.FC<AuthFlowProps> = ({ onAuthComplete }) => {
     setError('')
     
     try {
-      // TODO: Implement Discord OAuth
-      // For now, show an alert
-      alert('Discord OAuth will be implemented once we have the backend API routes set up!')
+      // Get Discord OAuth URL from backend
+      const response = await fetch('/api/auth/discord')
+      
+      if (!response.ok) {
+        throw new Error('Failed to get Discord OAuth URL')
+      }
+      
+      const data = await response.json()
+      
+      // Redirect to Discord OAuth
+      window.location.href = data.authUrl
     } catch (err) {
-      setError('Discord login failed')
+      setError('Failed to initiate Discord login')
+      console.error('Discord OAuth error:', err)
     }
   }
 
