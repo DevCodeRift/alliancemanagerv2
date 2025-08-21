@@ -1,6 +1,70 @@
-# Alliance Manager v2
+# Alliance Manager v2 🚀
 
-A Discord bot and web application for managing Politics and War alliances.
+A modern web application for managing Politics and War alliances with dual authentication (Discord OAuth + username/password) and comprehensive PnW API integration.
+
+![Cyberpunk 2077 Theme](https://img.shields.io/badge/Theme-Cyberpunk%202077-cyan)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white)
+
+## 🌟 Features
+
+### Authentication & User Management
+- **Dual Authentication**: Discord OAuth and traditional username/password
+- **PnW Nation Verification**: Verify ownership with Politics and War API keys
+- **Secure Sessions**: JWT-based authentication with refresh tokens
+- **Profile Management**: Update user information and change passwords
+
+### Politics and War Integration
+- **Nation Search**: Find and verify PnW nations
+- **API Key Verification**: Secure PnW account linking
+- **Real-time Data**: Cached nation data with PnW API integration
+- **Alliance Management**: Track alliance members and statistics
+
+### Modern UI/UX
+- **Cyberpunk 2077 Theme**: Futuristic Windows OS interface
+- **Responsive Design**: Works on desktop and mobile
+- **Smooth Animations**: CSS animations and transitions
+- **DevCodeRift Branding**: Custom branded interface
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ 
+- PostgreSQL database (Neon recommended for deployment)
+- Discord Developer Application
+- Politics and War API access
+
+### Installation
+
+1. **Clone and setup:**
+   ```bash
+   git clone <repository-url>
+   cd alliancemanagerv2
+   npm install
+   npm run setup
+   ```
+
+2. **Configure environment:**
+   Update `.env` with your credentials:
+   ```bash
+   DATABASE_URL="postgresql://..."
+   DISCORD_CLIENT_ID="your-discord-app-id"
+   DISCORD_CLIENT_SECRET="your-discord-app-secret"
+   ```
+
+3. **Initialize database:**
+   ```bash
+   npm run db:generate
+   npm run db:migrate
+   ```
+
+4. **Start development:**
+   ```bash
+   npm run dev:all
+   ```
+
+Visit `http://localhost:5173` for the frontend and `http://localhost:3001` for the API.
 
 ## 🚀 Quick Setup
 
