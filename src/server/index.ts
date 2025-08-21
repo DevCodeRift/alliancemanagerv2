@@ -20,7 +20,7 @@ const pnwClient = new GraphQLClient(process.env.PNW_API_BASE_URL || 'https://api
 // Middleware
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? process.env.FRONTEND_URL 
+    ? 'https://www.alliancemanager.dev'
     : 'http://localhost:5173',
   credentials: true
 }));
@@ -249,7 +249,7 @@ app.get('/api/auth/discord', (_req, res) => {
   const clientId = process.env.DISCORD_CLIENT_ID;
   const redirectUri = encodeURIComponent(
     process.env.NODE_ENV === 'production' 
-      ? `${process.env.FRONTEND_URL}/api/auth/discord/callback`
+      ? 'https://www.alliancemanager.dev/api/auth/discord/callback'
       : 'http://localhost:5173/api/auth/discord/callback'
   );
   
@@ -285,7 +285,7 @@ app.post('/api/auth/discord/callback', async (req, res) => {
         grant_type: 'authorization_code',
         code,
         redirect_uri: process.env.NODE_ENV === 'production' 
-          ? `${process.env.FRONTEND_URL}/api/auth/discord/callback`
+          ? 'https://www.alliancemanager.dev/api/auth/discord/callback'
           : 'http://localhost:5173/api/auth/discord/callback'
       })
     });
