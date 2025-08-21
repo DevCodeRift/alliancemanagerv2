@@ -15,16 +15,25 @@ module.exports = function handler(req, res) {
   }
 
   try {
+    console.log('Discord OAuth endpoint called');
+    
     const clientId = process.env.DISCORD_CLIENT_ID;
+    console.log('Discord Client ID:', clientId ? 'SET' : 'NOT SET');
     
     if (!clientId) {
       console.error('Missing DISCORD_CLIENT_ID environment variable');
-      return res.status(500).json({ error: 'Discord client ID not configured' });
+      return res.status(500).json({ 
+        error: 'Discord client ID not configured',
+        debug: 'DISCORD_CLIENT_ID is not set in environment variables'
+      });
     }
 
     const redirectUri = process.env.NODE_ENV === 'production' 
       ? 'https://www.alliancemanager.dev/auth/discord/callback'
       : 'http://localhost:5173/auth/discord/callback';
+    
+    console.log('Redirect URI:', redirectUri);
+    console.log('JWT Secret:', process.env.NEXTAUTH_SECRET ? 'SET' : 'NOT SET');
 
     // Create a state parameter for security
     const state = jwt.sign(
@@ -35,6 +44,8 @@ module.exports = function handler(req, res) {
       process.env.NEXTAUTH_SECRET || 'fallback-secret',
       { expiresIn: '10m' }
     );
+    
+    console.log('JWT state generated successfully');
 
     const discordAuthUrl = `https://discord.com/api/oauth2/authorize?` +
       `client_id=${clientId}&` +
@@ -44,6 +55,8 @@ module.exports = function handler(req, res) {
       `state=${state}`;
 
     console.log('Generated Discord OAuth URL successfully');
+    console.log('Auth URL length:', discordAuthUrl.length);
+    
     return res.status(200).json({ 
       authUrl: discordAuthUrl,
       state: state 
