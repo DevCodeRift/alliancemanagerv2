@@ -5,7 +5,7 @@ import * as jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
 import { GraphQLClient } from 'graphql-request';
 import * as dotenv from 'dotenv';
-import type { Request, Response, NextFunction } from 'express';
+import type { Request } from 'express';
 
 // Load environment variables
 dotenv.config();
