@@ -1,0 +1,726 @@
+/* Cyberpunk 2077 Windows OS Interface Theme */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #0a0a0a;
+  font-family: 'Rajdhani', 'Arial', sans-serif;
+  overflow: hidden;
+}
+
+/* Desktop Environment */
+.auth-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #0f0f23 50%, #16213e 75%, #0a0a0a 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-family: 'Rajdhani', 'Arial', sans-serif;
+  overflow: hidden;
+}
+
+/* Animated background grid */
+.auth-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(90deg, transparent 79px, rgba(0, 255, 255, 0.03) 81px, rgba(0, 255, 255, 0.03) 82px, transparent 84px),
+    linear-gradient(transparent 79px, rgba(0, 255, 255, 0.03) 81px, rgba(0, 255, 255, 0.03) 82px, transparent 84px);
+  background-size: 80px 80px;
+  animation: gridMove 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(80px, 80px); }
+}
+
+/* Windows Taskbar */
+.cyber-taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(180deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.9) 100%);
+  border-top: 2px solid #00ffff;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  box-shadow: 0 -5px 20px rgba(0, 255, 255, 0.3);
+}
+
+.cyber-start-button {
+  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  border: 2px solid #ffff00;
+  color: #000000;
+  padding: 8px 20px;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+  transition: all 0.3s ease;
+}
+
+.cyber-start-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+}
+
+.cyber-start-button:hover::before {
+  left: 100%;
+}
+
+.cyber-start-button:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+.cyber-taskbar-time {
+  color: #00ffff;
+  font-family: 'Orbitron', monospace;
+  font-size: 16px;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  letter-spacing: 1px;
+}
+
+.cyber-system-tray {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.cyber-tray-icon {
+  width: 24px;
+  height: 24px;
+  background: #00ffff;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  cursor: pointer;
+  position: relative;
+}
+
+.cyber-tray-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: #000000;
+  transform: translate(-50%, -50%);
+}
+
+/* Main Window */
+.auth-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  min-height: 500px;
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 50, 0.95));
+  border: 2px solid #00ffff;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  box-shadow: 
+    0 0 30px rgba(0, 255, 255, 0.4),
+    inset 0 0 30px rgba(0, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Rajdhani', 'Arial', sans-serif;
+  overflow: hidden;
+  z-index: 100;
+}
+
+/* Window Title Bar */
+.cyber-titlebar {
+  height: 40px;
+  background: linear-gradient(90deg, #00ffff, #0080ff);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  position: relative;
+}
+
+.cyber-titlebar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ffff00, #ff6b35, #ffff00);
+  animation: titlebarScan 3s linear infinite;
+}
+
+@keyframes titlebarScan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.cyber-window-title {
+  color: #000000;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cyber-window-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.cyber-control-btn {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000000;
+  background: #ffff00;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000000;
+  transition: all 0.2s ease;
+}
+
+.cyber-control-btn:hover {
+  background: #ff6b35;
+  box-shadow: 0 0 10px rgba(255, 107, 53, 0.6);
+}
+
+.cyber-control-btn.close:hover {
+  background: #ff0040;
+}
+
+/* Window Content */
+.cyber-window-content {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* Glitch effect overlay */
+.cyber-window-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 255, 0.01) 2px,
+    rgba(0, 255, 255, 0.01) 4px
+  );
+  pointer-events: none;
+  animation: glitchLines 8s linear infinite;
+}
+
+@keyframes glitchLines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+.auth-card h2 {
+  color: #00ffff !important;
+  font-family: 'Orbitron', monospace;
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.8),
+    0 0 40px rgba(0, 255, 255, 0.4);
+  letter-spacing: 3px;
+  position: relative;
+  animation: titleGlitch 4s ease-in-out infinite;
+}
+
+@keyframes titleGlitch {
+  0%, 90%, 100% { 
+    text-shadow: 
+      0 0 20px rgba(0, 255, 255, 0.8),
+      0 0 40px rgba(0, 255, 255, 0.4);
+  }
+  91%, 94% { 
+    text-shadow: 
+      -2px 0 rgba(255, 0, 150, 0.8),
+      2px 0 rgba(0, 255, 255, 0.8),
+      0 0 40px rgba(0, 255, 255, 0.4);
+  }
+  95%, 99% { 
+    text-shadow: 
+      0 0 20px rgba(0, 255, 255, 0.8),
+      0 0 40px rgba(0, 255, 255, 0.4);
+  }
+}
+
+.auth-card h2::before {
+  content: '◢◣ ';
+  color: #ffff00;
+}
+
+.auth-card h2::after {
+  content: ' ◤◥';
+  color: #ffff00;
+}
+
+.auth-subtitle {
+  color: #ffffff !important;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.9;
+}
+
+.auth-subtitle::before {
+  content: '[ ';
+  color: #00ffff;
+  font-weight: 700;
+}
+
+.auth-subtitle::after {
+  content: ' ]';
+  color: #00ffff;
+  font-weight: 700;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #00ffff !important;
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+.form-group label::before {
+  content: '▶ ';
+  color: #ffff00;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #004d4d;
+  border-radius: 0;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #666666 !important;
+  font-style: italic;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.5),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
+  background: rgba(0, 20, 20, 0.9);
+  color: #00ffff !important;
+}
+
+.form-group input:focus::placeholder {
+  color: #00ffff !important;
+  opacity: 0.7;
+}
+
+/* Buttons */
+.primary-button {
+  width: 100%;
+  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  border: 2px solid #ffff00;
+  color: #000000 !important;
+  padding: 15px 20px;
+  font-family: 'Orbitron', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+  transition: all 0.3s ease;
+  text-shadow: none;
+}
+
+.primary-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.primary-button:hover::before {
+  left: 100%;
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 5px 20px rgba(255, 107, 53, 0.4),
+    0 0 30px rgba(255, 255, 0, 0.6);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+}
+
+.primary-button:disabled {
+  background: #333333;
+  border-color: #555555;
+  color: #888888 !important;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.secondary-button {
+  width: 100%;
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff !important;
+  padding: 15px 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 20px;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+.secondary-button:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.4),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Divider */
+.auth-divider {
+  position: relative;
+  text-align: center;
+  margin: 25px 0;
+}
+
+.auth-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.auth-divider span {
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 50, 0.95));
+  padding: 0 20px;
+  color: #ffffff !important;
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Link buttons */
+.auth-switch {
+  text-align: center;
+  color: #cccccc !important;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #00ffff !important;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+.link-button:hover {
+  color: #ffff00 !important;
+  text-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
+  text-decoration: underline;
+}
+
+/* Messages */
+.error-message {
+  background: linear-gradient(45deg, rgba(255, 0, 64, 0.2), rgba(255, 107, 53, 0.2));
+  border: 2px solid #ff0040;
+  color: #ff6b9d !important;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  box-shadow: 0 0 20px rgba(255, 0, 64, 0.3);
+  animation: errorPulse 2s ease-in-out infinite;
+}
+
+@keyframes errorPulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255, 0, 64, 0.3);
+    border-color: #ff0040;
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(255, 0, 64, 0.6);
+    border-color: #ff6b9d;
+  }
+}
+
+.error-message::before {
+  content: '⚠ SYSTEM ERROR: ';
+  color: #ffff00;
+  font-weight: 700;
+}
+
+.success-message {
+  background: linear-gradient(45deg, rgba(0, 255, 100, 0.2), rgba(0, 255, 255, 0.2));
+  border: 2px solid #00ff64;
+  color: #00ff64 !important;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  box-shadow: 0 0 20px rgba(0, 255, 100, 0.3);
+}
+
+.success-message::before {
+  content: '✓ SYSTEM SUCCESS: ';
+  color: #ffff00;
+  font-weight: 700;
+}
+
+/* Desktop Icons */
+.cyber-desktop-icons {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
+}
+
+.cyber-desktop-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid #00ffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+.cyber-desktop-icon:hover {
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.cyber-desktop-icon .icon {
+  width: 32px;
+  height: 32px;
+  background: #00ffff;
+  margin-bottom: 5px;
+}
+
+.cyber-desktop-icon .label {
+  color: #ffffff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Loading animation */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  border: 3px solid #00ffff;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: cyberSpin 1s linear infinite;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+@keyframes cyberSpin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .auth-card {
+    width: 90vw;
+    min-height: 400px;
+    margin: 20px;
+  }
+  
+  .cyber-window-content {
+    padding: 20px;
+  }
+  
+  .auth-card h2 {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+  
+  .cyber-taskbar {
+    height: 50px;
+    padding: 0 15px;
+  }
+  
+  .cyber-start-button {
+    padding: 6px 15px;
+    font-size: 12px;
+  }
+  
+  .cyber-taskbar-time {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    width: 95vw;
+    margin: 10px;
+  }
+  
+  .cyber-window-content {
+    padding: 15px;
+  }
+  
+  .auth-card h2 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+  
+  .auth-subtitle {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  
+  .form-group input,
+  .primary-button,
+  .secondary-button {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+}
