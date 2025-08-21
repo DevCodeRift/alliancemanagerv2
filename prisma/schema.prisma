@@ -1,0 +1,108 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Authentication Models
+model User {
+  id          String   @id @default(cuid())
+  email       String?  @unique
+  username    String?  @unique
+  password    String?  // For username/password auth
+  discordId   String?  @unique @map("discord_id")
+  discordUsername String? @map("discord_username")
+  
+  // PnW Integration
+  nationId    Int?     @unique @map("nation_id") // Primary identifier after verification
+  nationName  String?  @map("nation_name")
+  leaderName  String?  @map("leader_name")
+  apiKey      String?  @map("api_key") // Encrypted PnW API key
+  verified    Boolean  @default(false) // Whether PnW account is verified
+  
+  // Timestamps
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  lastActive  DateTime? @map("last_active")
+  
+  // Relations
+  sessions    Session[]
+  accounts    Account[]
+  
+  @@map("users")
+}
+
+// OAuth Accounts (Discord, etc.)
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+// User Sessions
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+// PnW Nation Cache (for faster lookups)
+model Nation {
+  id              Int      @id // PnW Nation ID
+  nationName      String   @map("nation_name")
+  leaderName      String   @map("leader_name")
+  allianceId      Int?     @map("alliance_id")
+  allianceName    String?  @map("alliance_name")
+  score           Float?
+  cities          Int?
+  color           String?
+  continent       String?
+  warPolicy       String?  @map("war_policy")
+  domesticPolicy  String?  @map("domestic_policy")
+  lastActive      DateTime? @map("last_active")
+  
+  // Cache timestamps
+  updatedAt       DateTime @updatedAt @map("updated_at")
+  
+  @@map("nations")
+}
+
+// Alliance Information
+model Alliance {
+  id          Int      @id // PnW Alliance ID
+  name        String
+  acronym     String?
+  score       Float?
+  color       String?
+  founded     DateTime?
+  members     Int?
+  
+  // Cache timestamp
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  @@map("alliances")
+}
