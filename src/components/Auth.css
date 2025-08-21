@@ -1,0 +1,462 @@
+/* Military Terminal Authentication Theme */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+.auth-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: #0a0a0a;
+  position: relative;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+.auth-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(0, 255, 0, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 255, 0, 0.02) 0%, transparent 50%),
+    linear-gradient(0deg, transparent 24%, rgba(0, 255, 0, 0.01) 25%, rgba(0, 255, 0, 0.01) 26%, transparent 27%, transparent 74%, rgba(0, 255, 0, 0.01) 75%, rgba(0, 255, 0, 0.01) 76%, transparent 77%);
+  background-size: 100% 100%, 100% 100%, 10px 10px;
+  animation: scan 5s linear infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100vh); opacity: 0.1; }
+  50% { opacity: 0.3; }
+  100% { transform: translateY(100vh); opacity: 0.1; }
+}
+
+.auth-card {
+  background: rgba(17, 17, 17, 0.95);
+  border: 2px solid #00ff00;
+  border-radius: 0;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 520px;
+  min-height: 600px;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 0, 0.4),
+    inset 0 0 30px rgba(0, 255, 0, 0.05);
+  color: #00ff00;
+  position: relative;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  backdrop-filter: blur(10px);
+}
+
+.auth-card::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, #00ff00, #00aa00, #00ff00, #00aa00);
+  z-index: -1;
+  animation: borderPulse 3s ease-in-out infinite alternate;
+  border-radius: 0;
+}
+
+@keyframes borderPulse {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.auth-card::after {
+  content: '████ SECURE TERMINAL ████████████████████████████████████';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  font-size: 8px;
+  color: #00ff00;
+  opacity: 0.15;
+  line-height: 1;
+  word-break: break-all;
+  pointer-events: none;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #00ff00 !important;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+  animation: textFlicker 4s ease-in-out infinite;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+@keyframes textFlicker {
+  0%, 100% { opacity: 1; text-shadow: 0 0 15px rgba(0, 255, 0, 0.8); }
+  25% { opacity: 0.9; text-shadow: 0 0 10px rgba(0, 255, 0, 0.6); }
+  50% { opacity: 0.95; text-shadow: 0 0 20px rgba(0, 255, 0, 1); }
+  75% { opacity: 0.85; text-shadow: 0 0 5px rgba(0, 255, 0, 0.4); }
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #00dd00 !important;
+  margin-bottom: 2.5rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.auth-subtitle::before {
+  content: '[ ';
+  color: #00ff00;
+  font-weight: bold;
+}
+
+.auth-subtitle::after {
+  content: ' ]';
+  color: #00ff00;
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 1.8rem;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.7rem;
+  font-weight: 600;
+  color: #00ff00 !important;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.form-group label::before {
+  content: '> ';
+  color: #00ff00;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.8);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem;
+  background: #000000;
+  border: 2px solid #00aa00;
+  border-radius: 0;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  color: #00ff00 !important;
+  font-weight: 400;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+}
+
+.form-group input::placeholder {
+  color: #006600 !important;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #00ff00;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 0, 0.4),
+    inset 0 0 10px rgba(0, 255, 0, 0.1);
+  background: #001100;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+}
+
+.form-group input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.primary-button {
+  width: 100%;
+  background: #003300;
+  color: #00ff00 !important;
+  border: 2px solid #00ff00;
+  padding: 1rem 1.5rem;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+  margin-bottom: 1.5rem;
+}
+
+.primary-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.primary-button:hover::before {
+  left: 100%;
+}
+
+.primary-button:hover {
+  background: #004400;
+  box-shadow: 
+    0 0 25px rgba(0, 255, 0, 0.5),
+    inset 0 0 20px rgba(0, 255, 0, 0.1);
+  text-shadow: 0 0 15px rgba(0, 255, 0, 1);
+  border-color: #00ff00;
+}
+
+.primary-button:active {
+  transform: translateY(2px);
+}
+
+.primary-button:disabled {
+  background: #222222;
+  color: #666666 !important;
+  border-color: #444444;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.secondary-button {
+  width: 100%;
+  background: transparent;
+  color: #00dd00 !important;
+  border: 2px solid #00aa00;
+  padding: 1rem 1.5rem;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+.secondary-button:hover {
+  background: rgba(0, 255, 0, 0.08);
+  border-color: #00ff00;
+  color: #00ff00 !important;
+  text-shadow: 0 0 12px rgba(0, 255, 0, 0.8);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.auth-divider {
+  position: relative;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.auth-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00aa00, transparent);
+}
+
+.auth-divider span {
+  background: rgba(17, 17, 17, 0.95);
+  padding: 0 1.5rem;
+  color: #00aa00 !important;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.auth-switch {
+  text-align: center;
+  color: #00aa00 !important;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #00dd00 !important;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: inherit;
+  padding: 0;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.link-button:hover {
+  color: #00ff00 !important;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+  text-decoration: underline;
+}
+
+.error-message {
+  background: rgba(255, 0, 0, 0.15);
+  border: 2px solid #ff0000;
+  color: #ff4444 !important;
+  padding: 1rem;
+  border-radius: 0;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+.error-message::before {
+  content: '⚠ ERROR: ';
+  color: #ff0000;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+}
+
+.success-message {
+  background: rgba(0, 255, 0, 0.15);
+  border: 2px solid #00ff00;
+  color: #00ff00 !important;
+  padding: 1rem;
+  border-radius: 0;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+.success-message::before {
+  content: '✓ SUCCESS: ';
+  color: #00ff00;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+/* Loading animation */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #00ff00;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: terminalSpin 1s linear infinite;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+@keyframes terminalSpin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .auth-card {
+    margin: 1rem;
+    padding: 2rem;
+    min-height: auto;
+  }
+  
+  .auth-card h2 {
+    font-size: 1.7rem;
+    letter-spacing: 2px;
+  }
+  
+  .form-group input {
+    padding: 0.9rem;
+    font-size: 0.95rem;
+  }
+  
+  .primary-button,
+  .secondary-button {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    margin: 0.5rem;
+    padding: 1.5rem;
+  }
+  
+  .auth-card h2 {
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+  }
+  
+  .auth-subtitle {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+  
+  .form-group label {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+}
