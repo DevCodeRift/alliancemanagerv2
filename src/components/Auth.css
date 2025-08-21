@@ -301,12 +301,12 @@ body {
 }
 
 .auth-card h2::before {
-  content: '◢◣ ';
+  content: '';
   color: #ffff00;
 }
 
 .auth-card h2::after {
-  content: ' ◤◥';
+  content: '';
   color: #ffff00;
 }
 
