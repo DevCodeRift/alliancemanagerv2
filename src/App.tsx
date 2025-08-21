@@ -1,44 +1,36 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { AuthFlow } from './components/AuthFlow'
+import { Dashboard } from './components/Dashboard'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+interface User {
+  id: string
+  email?: string
+  username?: string
+  discordUsername?: string
+  verified: boolean
+  nationId?: number
+  nationName?: string
+  leaderName?: string
+}
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Alliance Manager v2</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          A Discord bot and web application for managing Politics and War alliances.
-        </p>
-      </div>
-      <div className="features">
-        <h2>🚀 Coming Soon</h2>
-        <ul>
-          <li>Discord OAuth Authentication</li>
-          <li>Politics and War Integration</li>
-          <li>Alliance Member Management</li>
-          <li>Real-time Bot Control</li>
-        </ul>
-      </div>
-      <p className="read-the-docs">
-        Built with React + TypeScript + Vite
-      </p>
-    </>
-  )
+function App() {
+  const [user, setUser] = useState<User | null>(null)
+
+  const handleAuthComplete = (authenticatedUser: User) => {
+    setUser(authenticatedUser)
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('auth_token')
+    setUser(null)
+  }
+
+  if (!user) {
+    return <AuthFlow onAuthComplete={handleAuthComplete} />
+  }
+
+  return <Dashboard user={user} onLogout={handleLogout} />
 }
 
 export default App
