@@ -394,6 +394,16 @@ body {
   opacity: 0.7;
 }
 
+.password-help {
+  color: #999999 !important;
+  font-size: 0.8rem;
+  font-family: 'Rajdhani', sans-serif;
+  margin-top: 5px;
+  display: block;
+  font-style: italic;
+  opacity: 0.8;
+}
+
 /* Buttons */
 .primary-button {
   width: 100%;
